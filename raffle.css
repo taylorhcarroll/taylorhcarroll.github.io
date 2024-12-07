@@ -1,0 +1,257 @@
+/* General styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Header styles */
+header {
+    background: #4CAF50;
+    color: #fff;
+    padding: 10px 20px;
+    text-align: center;
+}
+
+h1 {
+    margin: 0;
+    font-size: 1.8em;
+}
+
+/* Container styles */
+.container {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Button styles */
+button {
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1em;
+    margin: 10px 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+#revealButton {
+    background-color: #4CAF50;
+}
+
+#clearStateButton {
+    background-color: #DC267F;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* Input styles */
+input[type="file"] {
+    display: block;
+    margin: 10px 0;
+}
+
+input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+/* Section styles */
+section {
+    margin-bottom: 20px;
+    padding: 15px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+section h2 {
+    margin-top: 0;
+    font-size: 1.4em;
+    border-bottom: 2px solid #4CAF50;
+    padding-bottom: 5px;
+    color: #4CAF50;
+}
+
+/* Gift Card Inventory styles */
+.location {
+    font-weight: bold;
+    margin-top: 10px;
+    font-size: 1.1em;
+}
+
+.gift-card-value {
+    margin-left: 15px;
+    font-size: 0.95em;
+}
+
+/* Winner list styles */
+#winnerList div {
+    padding: 8px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Alternating row colors (colorblind-friendly palette) */
+#winnerList div:nth-child(odd) {
+    background-color: #d0e3f0;
+    /* Light blue */
+}
+
+#winnerList div:nth-child(even) {
+    background-color: #f5e1a4;
+    /* Light yellow */
+}
+
+#winnerList div:last-child {
+    border-bottom: none;
+}
+
+#winnerList label {
+    flex: 1;
+}
+
+#winnerList ul {
+    list-style: none;
+    padding: 0;
+    margin: 5px 0 0 20px;
+    font-size: 0.9em;
+}
+
+#winnerList ul li {
+    margin-bottom: 5px;
+}
+
+#winnerList a {
+    color: #187B1C;
+    text-decoration: none;
+}
+
+#winnerList a:hover {
+    text-decoration: underline;
+}
+
+
+/* Winner list styles */
+#winnerList div {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    /* Make the entire row clickable */
+    transition: background-color 0.3s ease;
+}
+
+#winnerList div:nth-child(odd) {
+    background-color: #d9f2f4;
+    /* Teal 20 */
+}
+
+#winnerList div:nth-child(even) {
+    background-color: #99C4C7;
+    /* Cool Gray 10 */
+}
+
+#winnerList div.checked {
+    background-color: #cccccc;
+    /* Grey background for checked rows */
+}
+
+#winnerList label {
+    flex: 1;
+    cursor: pointer;
+    /* Pointer cursor for the label */
+    text-decoration: none;
+}
+
+/* Checkbox styles */
+input[type="checkbox"] {
+    width: 24px;
+    /* Larger checkbox */
+    height: 24px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+/* Mobile-friendly file upload button */
+input[type="file"] {
+    display: none;
+    /* Hide the default file input */
+}
+
+.file-upload-wrapper {
+    display: inline-block;
+    position: relative;
+    border: 2px solid #4CAF50;
+    border-radius: 5px;
+    padding: 10px 20px 10px 0px;
+    font-size: 1em;
+    color: #4CAF50;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.3s ease;
+    margin: 20px 0px 20px 0px;
+}
+
+.file-upload-wrapper:hover {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.file-upload-wrapper:active {
+    background-color: #45a049;
+}
+
+/* Mobile styles */
+@media (max-width: 600px) {
+    body {
+        font-size: 0.9em;
+    }
+
+    h1 {
+        font-size: 1.5em;
+    }
+
+    button {
+        width: 100%;
+        margin: 5px 0;
+    }
+
+    .file-upload-wrapper {
+        width: 100%;
+        text-align: center;
+    }
+
+
+    #winnerList div {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    #winnerList label {
+        margin-bottom: 10px;
+    }
+
+    .gift-card-value {
+        margin-left: 10px;
+    }
+}

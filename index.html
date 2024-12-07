@@ -7,13 +7,17 @@
     <title>Raffle Drawing</title>
     <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
     <script defer src="raffle.js"></script>
+    <link rel="stylesheet" href="raffle.css">
 </head>
 
 <body>
     <h1>Raffle Drawing</h1>
     <p>Upload the attendee file to set up the raffle:</p>
-    <input type="file" id="uploadFile" accept=".xlsx">
     <button id="clearStateButton">Clear (Start Over)</button>
+    <label class="file-upload-wrapper">
+        Upload Excel File
+        <input type="file" id="uploadFile" accept=".xlsx">
+    </label>
     <p>Click the button below to reveal the next winner!</p>
     <button id="revealButton" disabled>Reveal Next Winner</button>
     <h2>Gift Card Inventory</h2>

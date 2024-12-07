@@ -52,7 +52,9 @@ async function parseExcelFile(file) {
             const attendees = attendeesData.slice(1).map((row) => {
                 const triviaAttendance = parseInt(row[0], 10); // Column 1
                 const name = row[1]; // Column 2
-                return { name, attendance: triviaAttendance };
+                const id = row[2]
+                const profile = row[4]
+                return { name, attendance: triviaAttendance, userId: id, profileURL: profile };
             }).filter((attendee) => attendee.name && attendee.attendance);
 
             // Parse Gift Card Inventory sheet (assumed to be named "giftCardInventory")
@@ -144,22 +146,38 @@ function renderWinnerList(winners, currentIndex) {
         label.style.marginLeft = "10px";
         label.style.textDecoration = winner.checked ? "line-through" : "none";
 
+        const details = document.createElement("ul");
+        const userIdItem = document.createElement("li");
+        const profileURLItem = document.createElement("li");
+
+        userIdItem.textContent = `User ID: ${winner.userId}`;
+        profileURLItem.innerHTML = `Profile: <a href="${winner.profileURL}" target="_blank">${winner.profileURL}</a>`;
+
+        details.appendChild(userIdItem);
+        details.appendChild(profileURLItem);
+
         winnerDiv.appendChild(checkbox);
         winnerDiv.appendChild(label);
+        winnerDiv.appendChild(details);
         winnerListDiv.appendChild(winnerDiv);
     });
 }
 
-// Function to generate tickets
+
 function generateTickets(attendees) {
     const tickets = [];
     attendees.forEach((attendee) => {
         for (let i = 0; i < attendee.attendance; i++) {
-            tickets.push(attendee.name);
+            tickets.push({
+                name: attendee.name,
+                userId: attendee.userId,
+                profileURL: attendee.profileURL,
+            });
         }
     });
     return tickets;
 }
+
 
 // Shuffle an array
 function shuffle(array) {
@@ -188,8 +206,7 @@ function updateGiftCardInventory(winner) {
 function drawUniqueWinners(tickets, giftCards) {
     // Sort gift cards by value (highest first)
     const sortedGiftCards = [...giftCards].sort((a, b) => b.value - a.value);
-
-    const shuffledTickets = shuffle(tickets);
+    let shuffledTickets = shuffle(tickets);
     const winners = [];
     const winnersSet = new Set();
 
@@ -199,9 +216,15 @@ function drawUniqueWinners(tickets, giftCards) {
             winner = shuffledTickets.pop();
         } while (winnersSet.has(winner) && shuffledTickets.length > 0);
 
-        if (winner && !winnersSet.has(winner)) {
-            winners.push({ name: winner, value: card.value, location: card.location, checked: false });
+        if (winner && !winnersSet.has(winner.userId)) {
+            winners.push({ ...winner, value: card.value, location: card.location, checked: false });
+
             winnersSet.add(winner);
+
+            // Remove all tickets that match the winner's userId
+            shuffledTickets = shuffledTickets.filter(ticket => ticket.userId !== winner.userId);
+
+            console.log("shuffledTickets: ", shuffledTickets)
         }
     });
 
@@ -212,7 +235,13 @@ function drawUniqueWinners(tickets, giftCards) {
 function showNextWinner() {
     if (raffleData.currentIndex < raffleData.winners.length) {
         const winner = raffleData.winners[raffleData.currentIndex];
-        alert(`Winner: ${winner.name}, Prize: $${winner.value} from ${winner.location}`);
+        alert(
+            `Winner: ${winner.name}\n` +
+            `Prize: $${winner.value} from ${winner.location}\n` +
+            `User ID: ${winner.userId}\n` +
+            `Profile: ${winner.profileURL}`
+        );
+
 
         updateGiftCardInventory(winner);
 
