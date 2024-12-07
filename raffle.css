@@ -10,7 +10,8 @@ body {
 
 /* Header styles */
 header {
-    background: #4CAF50;
+    background: #648FFF;
+    /* Light Blue */
     color: #fff;
     padding: 10px 20px;
     text-align: center;
@@ -44,15 +45,17 @@ button {
 }
 
 #revealButton {
-    background-color: #4CAF50;
+    background-color: #785EF0;
+    /* Purple */
 }
 
 #clearStateButton {
     background-color: #DC267F;
+    /* Pink */
 }
 
 button:hover {
-    background-color: #45a049;
+    opacity: 0.9;
 }
 
 button:disabled {
@@ -83,9 +86,10 @@ section {
 section h2 {
     margin-top: 0;
     font-size: 1.4em;
-    border-bottom: 2px solid #4CAF50;
+    border-bottom: 2px solid #648FFF;
+    /* Light Blue */
     padding-bottom: 5px;
-    color: #4CAF50;
+    color: #648FFF;
 }
 
 /* Gift Card Inventory styles */
@@ -102,55 +106,6 @@ section h2 {
 
 /* Winner list styles */
 #winnerList div {
-    padding: 8px;
-    border-bottom: 1px solid #eee;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-/* Alternating row colors (colorblind-friendly palette) */
-#winnerList div:nth-child(odd) {
-    background-color: #d0e3f0;
-    /* Light blue */
-}
-
-#winnerList div:nth-child(even) {
-    background-color: #f5e1a4;
-    /* Light yellow */
-}
-
-#winnerList div:last-child {
-    border-bottom: none;
-}
-
-#winnerList label {
-    flex: 1;
-}
-
-#winnerList ul {
-    list-style: none;
-    padding: 0;
-    margin: 5px 0 0 20px;
-    font-size: 0.9em;
-}
-
-#winnerList ul li {
-    margin-bottom: 5px;
-}
-
-#winnerList a {
-    color: #187B1C;
-    text-decoration: none;
-}
-
-#winnerList a:hover {
-    text-decoration: underline;
-}
-
-
-/* Winner list styles */
-#winnerList div {
     padding: 10px;
     border-bottom: 1px solid #ccc;
     display: flex;
@@ -161,14 +116,15 @@ section h2 {
     transition: background-color 0.3s ease;
 }
 
+/* Alternating row colors (IBM colorblind-friendly palette) */
 #winnerList div:nth-child(odd) {
-    background-color: #d9f2f4;
-    /* Teal 20 */
+    background-color: #FFB000;
+    /* Yellow */
 }
 
 #winnerList div:nth-child(even) {
-    background-color: #99C4C7;
-    /* Cool Gray 10 */
+    background-color: #FE6100;
+    /* Orange */
 }
 
 #winnerList div.checked {
@@ -181,6 +137,12 @@ section h2 {
     cursor: pointer;
     /* Pointer cursor for the label */
     text-decoration: none;
+}
+
+#winnerList label.checked {
+    text-decoration: line-through;
+    color: #666;
+    /* Muted text color for checked rows */
 }
 
 /* Checkbox styles */
@@ -198,14 +160,24 @@ input[type="file"] {
     /* Hide the default file input */
 }
 
+.headerWrapper {
+    padding: 12px;
+}
+
+.winnerTitle {
+    padding: 12px;
+}
+
 .file-upload-wrapper {
     display: inline-block;
     position: relative;
-    border: 2px solid #4CAF50;
+    border: 2px solid #785EF0;
+    /* Purple */
     border-radius: 5px;
     padding: 10px 20px 10px 0px;
     font-size: 1em;
-    color: #4CAF50;
+    color: #785EF0;
+    /* Purple */
     cursor: pointer;
     text-align: center;
     transition: all 0.3s ease;
@@ -213,12 +185,14 @@ input[type="file"] {
 }
 
 .file-upload-wrapper:hover {
-    background-color: #4CAF50;
+    background-color: #785EF0;
+    /* Purple */
     color: white;
 }
 
 .file-upload-wrapper:active {
-    background-color: #45a049;
+    background-color: #5a42c4;
+    /* Darker Purple */
 }
 
 /* Mobile styles */
@@ -240,7 +214,6 @@ input[type="file"] {
         width: 100%;
         text-align: center;
     }
-
 
     #winnerList div {
         flex-direction: column;

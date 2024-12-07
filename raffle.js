@@ -145,6 +145,7 @@ function renderWinnerList(winners, currentIndex) {
         label.textContent = `${winner.name} - Prize: $${winner.value} from ${winner.location}`;
         label.style.marginLeft = "10px";
         label.style.textDecoration = winner.checked ? "line-through" : "none";
+        label.style.fontWeight = "bold"
 
         const details = document.createElement("ul");
         const userIdItem = document.createElement("li");
