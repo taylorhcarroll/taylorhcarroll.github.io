@@ -45,18 +45,18 @@ async function parseExcelFile(file) {
                 reject(new Error(`Sheet "${attendeesSheetName}" not found.`));
                 return;
             }
-
+            console.log("attendeesSheet: ", attendeesSheet)
             const attendeesData = XLSX.utils.sheet_to_json(attendeesSheet, { header: 1 });
 
             // Skip header row and extract "Trivia Attendance" and "Name" columns
             const attendees = attendeesData.slice(1).map((row) => {
                 const triviaAttendance = parseInt(row[0], 10); // Column 1
                 const name = row[1]; // Column 2
-                const id = row[2]
+                const id = row[3]?.toString().trim();
                 const profile = row[4]
                 return { name, attendance: triviaAttendance, userId: id, profileURL: profile };
             }).filter((attendee) => attendee.name && attendee.attendance);
-
+            console.log("attendees: ", attendees)
             // Parse Gift Card Inventory sheet (assumed to be named "giftCardInventory")
             const giftCardSheetName = "giftCardInventory";
             const giftCardSheet = workbook.Sheets[giftCardSheetName];
@@ -64,9 +64,9 @@ async function parseExcelFile(file) {
                 reject(new Error(`Sheet "${giftCardSheetName}" not found.`));
                 return;
             }
-
             const giftCardData = XLSX.utils.sheet_to_json(giftCardSheet, { header: 1 });
             const giftCards = [];
+            console.log("giftcards: ", giftCards)
 
             // Extract gift card data from the header row and individual cells
             const headers = giftCardData[0]; // First row contains the column names
@@ -75,7 +75,7 @@ async function parseExcelFile(file) {
                 if (!location) continue;
 
                 // Sum up all the gift card values in the column, excluding the bottom total value
-                for (let j = 1; j < giftCardData.length - 1; j++) {
+                for (let j = 1; j < giftCardData.length; j++) {
                     const value = parseInt(giftCardData[j][i], 10);
                     if (!isNaN(value) && value > 0) {
                         giftCards.push({ value, location });
